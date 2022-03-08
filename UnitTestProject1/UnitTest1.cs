@@ -57,7 +57,7 @@ namespace UnitTestProject1
         {
             try
             {
-                string? message = null;
+                string message = null;
                 MoodAnalyser1 moodAnalyzer = new MoodAnalyser1(message);
                 string mood = moodAnalyzer.AnalyzeMood();
             }
@@ -67,10 +67,16 @@ namespace UnitTestProject1
             }
 
         }
+        //Testcase 4.1
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyser1(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyser.MoodAnalyser1", "MoodAnalyser1");
+            expected.Equals(obj);
+
+        }
 
     }
 }
-
-
-
-
