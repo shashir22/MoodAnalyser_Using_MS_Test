@@ -3,13 +3,14 @@ using MoodAnalyser;
 
 namespace UnitTestProject1
 {
+
     [TestClass]
     public class UnitTest1
     {
 
 
         [TestMethod]
-        public void GivenMoodHappy_ShouldReturnHappy()
+        public void GivenMoodHappy_ShouldReturnSad()
         {
             //Arrange
             string expected = "HAPPY";
@@ -23,7 +24,7 @@ namespace UnitTestProject1
             Assert.AreEqual(expected, mood);
         }
         [TestMethod]
-        [DataRow(null)]
+        [DataRow("I am in Happy Mood")]
         public void GivenHAPPYMoodShouldReturnHappy(string message)
         {
             //Arrange
@@ -36,5 +37,37 @@ namespace UnitTestProject1
             //Assert
             Assert.AreEqual(expected, mood);
         }
+        [TestMethod]
+        public void GivenMoodEmpty_ShouldThrowException()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyser1 moodAnalyzer = new MoodAnalyser1(message);
+                string mood = moodAnalyzer.AnalyzeMood();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be empty", e.Message);
+            }
+
+        }
+        [TestMethod]
+        public void GivenMoodNull_ShouldThrowException()
+        {
+            try
+            {
+                string? message = null;
+                MoodAnalyser1 moodAnalyzer = new MoodAnalyser1(message);
+                string mood = moodAnalyzer.AnalyzeMood();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be null", e.Message);
+            }
+
+        }
     }
 }
+
+
