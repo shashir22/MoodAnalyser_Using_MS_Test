@@ -1,9 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyser;
 
-namespace MoodAnalyserUnitTest
+namespace UnitTestProject1
 {
-
     [TestClass]
     public class UnitTest1
     {
@@ -23,6 +22,19 @@ namespace MoodAnalyserUnitTest
             //Assert
             Assert.AreEqual(expected, mood);
         }
+        [TestMethod]
+        [DataRow(null)]
+        public void GivenHAPPYMoodShouldReturnHappy(string message)
+        {
+            //Arrange
+            string expected = "HAPPY";
+            MoodAnalyser1 moodAnalyzer = new MoodAnalyser1(message);
+
+            //Act
+            string mood = moodAnalyzer.AnalyzeMood();
+
+            //Assert
+            Assert.AreEqual(expected, mood);
+        }
     }
 }
-
